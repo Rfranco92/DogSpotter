@@ -30,8 +30,23 @@ a:hover {
 }
 
 /*********** Navbar ***********/
+#login {
+}
+
+.flexbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
 .navbar {
-  margin-bottom: 50px;
+  /*margin-bottom: 50px;*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   text-align: center;
   background-color: #063166;
   border: none;
@@ -58,8 +73,8 @@ a:hover {
 }
 
 .navbar.center, .navbar-inner, .nav {
-  display: inline-block;
-  float: none;
+  /*display: inline-block;
+  float: none;*/
 }
 
 #myNavbar {
@@ -69,10 +84,11 @@ a:hover {
 
 /*********** Main ***********/
 
-#logo {
+#logo {/*
+	position: fixed;
+	top: 0;*/
 	font-size: 50px;
 	letter-spacing: 10px;
-	text-align: center;
 	margin-bottom: 25px;
 	font-family: 'Playfair Display', serif;
 }
@@ -120,18 +136,24 @@ a:hover {
 }
 
 .index-background {
-	background-image: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg");
-	height: 850px;
+	/*background-image: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg");*/
+	background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed; 
+	/*height: 850px;
 	min-height: 100%;
 	max-height: 100%;
 	width: 115%;
 	margin: 0 auto;
 	margin-top: -105px;
-	margin-left: -100px;
+	margin-left: -100px;*/
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+	/*background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
 }
 
 #text-overlay {
