@@ -1,8 +1,10 @@
 html, body {
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
+  min-width: 500px;
+  min-height: 800px;
 }
 
 *:before,
@@ -42,6 +44,7 @@ a:hover {
 
 .navbar {
   /*margin-bottom: 50px;*/
+  min-height: 210px;
   position: fixed;
   top: 0;
   left: 0;
@@ -84,12 +87,13 @@ a:hover {
 
 /*********** Main ***********/
 
-#logo {/*
-	position: fixed;
-	top: 0;*/
-	font-size: 50px;
-	letter-spacing: 10px;
-	margin-bottom: 25px;
+#logo {
+	position: relative;
+	top: 0;	
+	font-size: 45px;
+	letter-spacing: 8px;
+	padding: 40px 0 40px 0;
+	/*margin-bottom: 25px;*/
 	font-family: 'Playfair Display', serif;
 }
 
@@ -136,25 +140,15 @@ a:hover {
 }
 
 .index-background {
-	/*background-image: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg");*/
-	background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed; 
-	/*height: 850px;
-	min-height: 100%;
-	max-height: 100%;
-	width: 115%;
-	margin: 0 auto;
-	margin-top: -105px;
-	margin-left: -100px;*/
+	background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed;
+	background-position: 0 210px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	/*background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;*/
 }
+
+
 
 #text-overlay {
 	position: absolute;
@@ -378,4 +372,21 @@ form .likert li label {width:100%;} {
   padding:0 4.25%;
   text-align:right
 } 
+
+@media screen and (max-width: 767px) {
+  .index-background {
+		background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed;
+		background-position: 0 333px;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		min-width: 500px;
+		min-height: 767px;
+		overflow: scroll;
+	}
+	 #home, #find, #matched, #list {
+	 	text-align: left;
+	 }
+}
 
