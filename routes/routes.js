@@ -3,12 +3,24 @@ var fs = require("fs");
 
 var userMap = {}
 
+function isLoggedIn () {
+  if (userMap[req.sessionID] !== undefined) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 module.exports = function(app) {
   //select - from the food table interfaced by the Food model
   app.get("/", function(req, res) {
     res.render("index");
-    userMap[req.sessionID] || (userMap[req.sessionID] = undefined);
-    console.log(userMap); 
+    var checkLogin = isLoggedIn();
+    if (checkLogin === false) {
+      userMap[req.sessionID] || (userMap[req.sessionID] = undefined);
+    }    
+    // console.log(userMap); 
   });
 
   app.get("/usersurvey", function(req, res) {
