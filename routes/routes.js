@@ -1,10 +1,14 @@
 var db = require("../models");
 var fs = require("fs");
 
+var userMap = {}
+
 module.exports = function(app) {
   //select - from the food table interfaced by the Food model
   app.get("/", function(req, res) {
     res.render("index");
+    userMap[req.sessionID] || (userMap[req.sessionID] = undefined);
+    console.log(userMap); 
   });
 
   app.get("/usersurvey", function(req, res) {

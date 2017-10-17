@@ -11,6 +11,11 @@ var Handlebars = require('handlebars');
 var fileUpload = require('express-fileupload');
 
 
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+
+
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -18,6 +23,9 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
+
+app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
