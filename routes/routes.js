@@ -1,26 +1,31 @@
 var db = require("../models");
 var fs = require("fs");
 
-var userMap = {}
+// function checkAuth(req, res, next) {
+//   if (!req.session[req.sessionID]) {
+//     res.send('You are not authorized to view this page');
+//   } else {
+//     next();
+//   }
+// }
 
-function isLoggedIn () {
-  if (userMap[req.sessionID] !== undefined) {
-    return true;
+function checkAuth(req, res, next) {
+  if (!req.session[req.sessionID] || req.session[req.sessionID] === undefined) {
+    return res.redirect("/login");
   }
   else {
-    return false;
+    next();
   }
 }
 
+function cookieToUser () {
+  req.session[req.sessionID] || (req.session[req.sessionID] = undefined)
+}
+
 module.exports = function(app) {
-  //select - from the food table interfaced by the Food model
   app.get("/", function(req, res) {
-    res.render("index");
-    var checkLogin = isLoggedIn();
-    if (checkLogin === false) {
-      userMap[req.sessionID] || (userMap[req.sessionID] = undefined);
-    }    
-    // console.log(userMap); 
+    cookieToUser();
+    res.render("index");     
   });
 
   app.get("/usersurvey", function(req, res) {
