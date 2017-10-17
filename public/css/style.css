@@ -1,10 +1,8 @@
 html, body {
   padding: 0;
   margin: 0;
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  min-width: 500px;
-  min-height: 800px;
 }
 
 *:before,
@@ -32,24 +30,8 @@ a:hover {
 }
 
 /*********** Navbar ***********/
-#login {
-}
-
-.flexbox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-}
-
 .navbar {
-  /*margin-bottom: 50px;*/
-  min-height: 210px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  margin-bottom: 50px;
   text-align: center;
   background-color: #063166;
   border: none;
@@ -76,8 +58,8 @@ a:hover {
 }
 
 .navbar.center, .navbar-inner, .nav {
-  /*display: inline-block;
-  float: none;*/
+  display: inline-block;
+  float: none;
 }
 
 #myNavbar {
@@ -88,12 +70,10 @@ a:hover {
 /*********** Main ***********/
 
 #logo {
-	position: relative;
-	top: 0;	
-	font-size: 45px;
-	letter-spacing: 8px;
-	padding: 40px 0 40px 0;
-	/*margin-bottom: 25px;*/
+	font-size: 50px;
+	letter-spacing: 10px;
+	text-align: center;
+	margin-bottom: 25px;
 	font-family: 'Playfair Display', serif;
 }
 
@@ -140,23 +120,16 @@ a:hover {
 }
 
 .index-background {
-<<<<<<< HEAD
-	background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed;
-	background-position: 0 210px;
-=======
 	background-image: url("../images/background_image.jpg");
 	width: 100%;
 	height: 100vh;
 	margin: 0 auto;
 	margin-top: -50px;
->>>>>>> 40bc669243d8d8647ff19c6c657184e161456209
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
-
-
 
 #text-overlay {
 	position: absolute;
@@ -380,21 +353,3 @@ form .likert li label {width:100%;} {
   padding:0 4.25%;
   text-align:right
 } 
-
-@media screen and (max-width: 767px) {
-  .index-background {
-		background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed;
-		background-position: 0 333px;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		min-width: 500px;
-		min-height: 767px;
-		overflow: scroll;
-	}
-	 #home, #find, #matched, #list {
-	 	text-align: left;
-	 }
-}
-
