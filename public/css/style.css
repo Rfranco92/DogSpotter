@@ -98,7 +98,7 @@ a:hover {
 }
 
 .container {
-	height: 100%;
+	height: 100vh;
 }
 
 .dog-image {
@@ -140,8 +140,16 @@ a:hover {
 }
 
 .index-background {
+<<<<<<< HEAD
 	background: url("https://static.pexels.com/photos/374845/pexels-photo-374845.jpeg") no-repeat center center fixed;
 	background-position: 0 210px;
+=======
+	background-image: url("../images/background_image.jpg");
+	width: 100%;
+	height: 100vh;
+	margin: 0 auto;
+	margin-top: -50px;
+>>>>>>> 40bc669243d8d8647ff19c6c657184e161456209
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
