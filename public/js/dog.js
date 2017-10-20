@@ -1,9 +1,14 @@
 //`fileselect` event to all file inputs on the page
 $(document).on('change', ':file', function() {
+    //multiple variables are being declared with this one var statement, 1 variable per line separated by commas
+    //  numFiles uses a ternary operator (?logicIfTrue:logicIfFalse)
+    //  label replaces backslashes (\) with forward slashes (/) for all occurences (globally, that's what the g is for) found in the string 
+    //      also in label the last replace removes any current directory references (./)
     var input = $(this),
         numFiles = input.get(0).files ? input.get(0).files.length : 1,
         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
 
+    //trigger a file select (launches your OS file selection)
     input.trigger('fileselect', [numFiles, label]);
 });
 
