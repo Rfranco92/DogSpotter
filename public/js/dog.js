@@ -58,15 +58,15 @@ function url() {
 	var checkedArray = urlLoc.split("+");
 
 	$.each($("form[name=filter-dogs] input:checkbox"), function () {
-		console.log( checkedArray.indexOf(this.value) );
+		//console.log( checkedArray.indexOf(this.value) );
  		if ( checkedArray.indexOf(this.value) >= 0 ) {
  			$(':checkbox[value="' + this.value + '"]').attr('checked', true);
  		}
  		$("#filter-dogs").show();
 		$(".show-all-btn").show();
 	});
-	}
-	url();
+}
+url();
 
 	$(".dog-filter-btn").on("click", function() {
 
@@ -114,13 +114,6 @@ function url() {
         } else {
             if( log ) alert(log);
         }
-    });
-
-    $("#upload-image").on("click", function() {
-        $(".success-message").html("Image uploaded successfully!");
-        //add an image to the success area
-        //add a hidden input element to contain the filepath to the uploaded image
-        //style the image to bs4
     });
 
     //Create a Profile - upload an image
