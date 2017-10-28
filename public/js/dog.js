@@ -1,113 +1,112 @@
-//`fileselect` event to all file inputs on the page
-$(document).on('change', ':file', function() {
-    //multiple variables are being declared with this one var statement, 1 variable per line separated by commas
-    //  numFiles uses a ternary operator (?logicIfTrue:logicIfFalse)
-    //  label replaces backslashes (\) with forward slashes (/) for all occurences (globally, that's what the g is for) found in the string 
-    //      also in label the last replace removes any current directory references (./)
-    var input = $(this),
-        numFiles = input.get(0).files ? input.get(0).files.length : 1,
-        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-
-    //trigger a file select (launches your OS file selection)
-    input.trigger('fileselect', [numFiles, label]);
-});
-
 $(document).ready(function () {
+    var availableBreeds = [];
 
+    $("#breed").autocomplete({
+        source: availableBreeds
+    });
 
-// Give treat button
-// Updates the treats column in the database
-$(".treat-btn").on("click", function() {
-	var id = $(this).data("treatid");
-		// console.log("id ", id);
-	var currentTreats = $(this).data("treats");
-		// console.log("currentTreats ", currentTreats);
-	var addedTreats = (currentTreats + 1);
-		// console.log("addedTreats ", addedTreats);
+    // Give treat button
+    // Updates the treats column in the database
+    $(".treat-btn").on("click", function() {
+        var id = $(this).data("treatid");
+            // console.log("id ", id);
+        var currentTreats = $(this).data("treats");
+            // console.log("currentTreats ", currentTreats);
+        var addedTreats = (currentTreats + 1);
+            // console.log("addedTreats ", addedTreats);
 
-	var updatedTreats = {
-		treats: addedTreats
-		};
+        var updatedTreats = {
+            treats: addedTreats
+        };
 
-		$.ajax("/api/dogs/" + id, {
-			type: "PUT",
-			data: updatedTreats
-		}).then(function() {
-			console.log("updated id ", id);
-			location.reload();
-		});
-	});
+        $.ajax("/api/dogs/" + id, {
+            type: "PUT",
+            data: updatedTreats
+        }).then(function() {
+            console.log("updated id ", id);
+            location.reload();
+        });
+    });
 
+    $("#filter-dogs").hide();
+    $(".show-all-btn").hide();
 
-$("#filter-dogs").hide();
-$(".show-all-btn").hide();
+    $(".filter-btn").on("click", function() {
+        $("#filter-dogs").toggle();
+        $(".show-all-btn").toggle();
+    });
 
-$(".filter-btn").on("click", function() {
-	$("#filter-dogs").toggle();
-	$(".show-all-btn").toggle();
-});
+    // Filter-breed logic
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
 
-// Filter-breed logic
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
+    function url() { 
+        var urlLoc = window.location.pathname;
+        urlLoc = urlLoc.replace(window.location.hostname, "");
 
-function url() { 
-	var urlLoc = window.location.pathname;
-	urlLoc = urlLoc.replace(window.location.hostname, "");
+        urlLoc = urlLoc.replace("/finddog/", "");
+        urlLoc = urlLoc.replaceAll("%20", " ");
 
-	urlLoc = urlLoc.replace("/finddog/", "");
-    urlLoc = urlLoc.replaceAll("%20", " ");
+        var checkedArray = urlLoc.split("+");
 
-	var checkedArray = urlLoc.split("+");
-
-	$.each($("form[name=filter-dogs] input:checkbox"), function () {
-		//console.log( checkedArray.indexOf(this.value) );
- 		if ( checkedArray.indexOf(this.value) >= 0 ) {
- 			$(':checkbox[value="' + this.value + '"]').attr('checked', true);
- 		}
- 		$("#filter-dogs").show();
-		$(".show-all-btn").show();
-	});
-}
-url();
+        $.each($("form[name=filter-dogs] input:checkbox"), function () {
+            //console.log( checkedArray.indexOf(this.value) );
+            if ( checkedArray.indexOf(this.value) >= 0 ) {
+                $(':checkbox[value="' + this.value + '"]').attr('checked', true);
+            }
+            $("#filter-dogs").show();
+            $(".show-all-btn").show();
+        });
+    }
+    url();
 
 	$(".dog-filter-btn").on("click", function() {
+        var allCheckedDogs = [];
+        var formData = $("#filter-dogs").serializeArray();
+        console.log(formData);
 
-	var allCheckedDogs = [];
-	var formData = $("#filter-dogs").serializeArray();
-	console.log(formData);
+        for (var i = 0; i < formData.length; i++) {
+            allCheckedDogs.push(formData[i].value);
+        }
 
-	for (var i = 0; i < formData.length; i++) {
-		allCheckedDogs.push(formData[i].value);
-	}
+        var allDogs = {
+            breed: allCheckedDogs
+        }
 
-	var allDogs = {
-		breed: allCheckedDogs
-	}
-
-	  var stringBreed = allCheckedDogs.join("+");
-		window.location = "/finddog/" + stringBreed;
-
-});
+        var stringBreed = allCheckedDogs.join("+");
+        window.location = "/finddog/" + stringBreed;
+    });
 
 
 	$(".show-all-btn").on("click", function() {
- 			$(':checkbox').attr('checked', false);
-			var allCheckedDogs = [];
+        $(':checkbox').attr('checked', false);
+        var allCheckedDogs = [];
 
-			var allDogs = {
-				breed: allCheckedDogs
-			}
-			var stringBreed = allCheckedDogs.join("+");
+        var allDogs = {
+            breed: allCheckedDogs
+        }
+        var stringBreed = allCheckedDogs.join("+");
 			window.location = "/finddog/" + stringBreed;
-
 	});
 
-
-		// RAY 
+	// RAY 
     $("#dog-preview-container").hide();
+
+    //`fileselect` event to all file inputs on the page
+    $(document).on('change', ':file', function() {
+        //multiple variables are being declared with this one var statement, 1 variable per line separated by commas
+        //  numFiles uses a ternary operator (?logicIfTrue:logicIfFalse)
+        //  label replaces backslashes (\) with forward slashes (/) for all occurences (globally, that's what the g is for) found in the string 
+        //      also in label the last replace removes any directory path before the actual filename -this leads to the display of just the filename which is neater
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+
+        //trigger the fileselect event defined below
+        input.trigger('fileselect', [numFiles, label]);
+    });    
 
     // Watch for custom `fileselect` event
     $(':file').on('fileselect', function(event, numFiles, label) {

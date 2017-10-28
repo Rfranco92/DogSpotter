@@ -124,7 +124,6 @@ module.exports = function(app) {
 
   });
 
-
   app.post('/api/newsurvey', function(req, res) {
     var respondentData = req.body;
     var respondentArray = [];
@@ -200,6 +199,12 @@ module.exports = function(app) {
   //not necessary yet, questions are retrieved internally by a simple require statement
   app.get("/api/getsurvquestions", function (req, res) {
     res.json(surveyQs);
+  });
+
+  app.get("/api/getbreeds", function (req, res) {
+    db.Dog.aggregate('breed', 'DISTINCT', { plain: false }).then(function (availBreeds) {
+      res.json(availBreeds);
+    });
   });
 
   //delete
